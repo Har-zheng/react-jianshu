@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import './style.css'
 // 占位符  最外层 可以不用包裹 div
 class TodoList extends Component {
   constructor(props) { //组件中最先执行的函数
@@ -12,13 +13,23 @@ class TodoList extends Component {
   render() {
     return (
       <Fragment>
+
+
         {/* jsx 的插值{} */}
-        <div><input value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}></input>
-          <button onClick={this.handleBtnClick.bind(this)}>提交</button></div>
+        <div>
+          {/* 语义间的区别 */}
+          <label htmlFor="insertArea">输入内容</label>
+          <input id="insertArea" className='input' value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}></input>
+          <button onClick={this.handleBtnClick.bind(this)}>提交</button>
+        </div>
         <ul>
           {
-            this.state.list.map((item, index)=> {
-              return <li  onClick={this.handleItemDelete.bind(this, index)} key={index}>{item}</li>
+            this.state.list.map((item, index) => {
+              {/* dangerouslySetInnerHTML  不转译 */ }
+              return <li onClick={this.handleItemDelete.bind(this, index)} key={index}
+                dangerouslySetInnerHTML={{ __html: item }}
+              >
+              </li>
             })
           }
         </ul>
@@ -26,7 +37,7 @@ class TodoList extends Component {
     )
   }
   // state  不可在函数中直接使用 this 指向当前的 函数  需要调用方法是改变this指向
-  handleInputChange(e){
+  handleInputChange(e) {
     console.log(e.target.value)
     this.setState({
       inputValue: e.target.value
@@ -39,10 +50,10 @@ class TodoList extends Component {
       inputValue: ''
     })
   }
-  handleItemDelete(index){
+  handleItemDelete(index) {
     // react inmutable 
     // state 不允许我们做任何的改变
-    
+
     const list = [...this.state.list] // 展开运算符  相当于拷贝 赋值 list
     list.splice(index, 1) // 截取方法
     this.setState({
