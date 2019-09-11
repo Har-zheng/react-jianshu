@@ -23,9 +23,10 @@ class TodoList extends Component {
           <button onClick={this.handleBtnClick.bind(this)}>提交</button>
         </div>
         <ul>
+          
+          {/* dangerouslySetInnerHTML  不转译 */ }
           {
-            this.state.list.map((item, index) => {
-              {/* dangerouslySetInnerHTML  不转译 */ }
+            this.state.list.map((item, index) => { 
               return <li onClick={this.handleItemDelete.bind(this, index)} key={index}
                 dangerouslySetInnerHTML={{ __html: item }}
               >
