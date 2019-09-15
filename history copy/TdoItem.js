@@ -7,37 +7,28 @@ class TodoItem extends Component {
     this.handkeClick = this.handkeClick.bind(this)
   }
   render() {
-    console.log('child render!!')
-    const { item } = this.props;
+    const { item, test} = this.props;
     //1  this.props接受父传递的值
     // 2 父传子
     return (
-      <div onClick={this.handkeClick}>
-        {item}
+      <div key onClick={this.handkeClick}>
+       {test} - {item}
       </div>
     )
   }
-  // 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextProps.item !== this.props.item) {
-      return true;
-    } else {
-      return false
-    }
-  }
-  handkeClick() { // 子组件 调用 父组件的方法传值 同时可以使用 arrayof()数组组成部分两种类型其之一
+  handkeClick() { // 子组件 调用 父组件的方法传值 同时可以使用 arrayof()两种类型其之一
     // alert(this.props.index)
     const { deleteItem, index } = this.props
     deleteItem(index)
   }
 }
 TodoItem.propTypes = {
-  item: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
+  test: PropTypes.string.isRequired, // 必传项
+  item: PropTypes.string,
   deleteItem: PropTypes.func,
   index: PropTypes.number
 }
-
+TodoItem.defaultProps = { // 设置传值的默认值  当父组件未传值
+  test: 'hello world!'
+}
 export default TodoItem
