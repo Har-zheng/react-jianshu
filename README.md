@@ -78,3 +78,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### componentWillReaceiveProps 1 当一个组件从父组件接受参数  只要父组件的render函数被执行了 子组件的生命周期函数就会被执行 2(如果这个组件第一次存在于父组件中 不会执行) 3(如果这个组件之前已经存在于父组件中 才会被执行)
 
 ### Unmontting   componentWillUnmount 1 当这个组件即将被从页面剔除的时候 会被执行
+
+### redux
+![redux](./history/redux.png 'react redux')
+
+### actionTypes 拆分  优化代码  定位错误比较便捷
+### actionCreators 统一创建 action
