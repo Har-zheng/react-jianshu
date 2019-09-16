@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TdoItem';
 import axios from 'axios'
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import './style.css';
 // 占位符  最外层 可以不用包裹 div
 class TodoList extends Component {
@@ -11,12 +12,14 @@ class TodoList extends Component {
     this.state = { // 存储的数据 数据状态
       inputValue: '',
       list: [],
-      show: true
+      show: true,
+      listArr: []
     }
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleItemDelete = this.handleItemDelete.bind(this)
     this.handleBtnClick = this.handleBtnClick.bind(this)
     this.handleToggole = this.handleToggole.bind(this)
+    this.handleAdditem = this.handleAdditem.bind(this)
   }
   render() {
     console.log('父 render')
@@ -40,11 +43,45 @@ class TodoList extends Component {
           {this.getTdoItem()}
         </ul>
         <div>
-          <div className={this.state.show ? 'show' : 'hide'}>hello</div>
+          <CSSTransition
+           in={this.state.show}
+           timeout={1000}
+           classNames='fade'
+           unmountOnExit onEntered={(el) => {el.style.color = 'blue'}}
+           appear={true}>
+            <div>hello</div>
+          </CSSTransition>
           <button onClick={this.handleToggole}>toggole</button>
+        </div>
+        <div>
+        <TransitionGroup>
+          {
+            this.state.listArr.map((item, index)=> {
+            return (
+              <CSSTransition
+              in={this.state.show}
+              timeout={1000}
+              classNames='fade'
+              unmountOnExit onEntered={(el) => {el.style.color = 'blue'}}
+              appear={true}
+              key={index}>
+                <div >{item}</div>
+              </CSSTransition>
+            )
+            })
+          }
+          </TransitionGroup>
+          <button onClick={this.handleAdditem}>add</button>
         </div>
       </Fragment>
     )
+  }
+  handleAdditem() {
+    this.setState((prevState)=>{
+      return {
+        listArr: [...prevState.listArr, 'item']
+      }
+    })
   }
   handleToggole() {
     console.log('toggole')
