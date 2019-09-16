@@ -84,3 +84,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### actionTypes 拆分  优化代码  定位错误比较便捷
 ### actionCreators 统一创建 action
+
+### ui组件 容器组件
+
+### 普通组件(this)   无状态组件(优点执行速度更快 箭头函数  传入this) => 一般使用ui组件  或者只用到render函数时  考虑使用
+
+### redux-thunk  中间件进行ajax请求发送

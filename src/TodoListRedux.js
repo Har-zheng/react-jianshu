@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import 'antd/dist/antd.css'
-import { Input,Button, List } from 'antd';
 import store from './store/index'
+import TodoListReduxUI from './TodoListReduxUI'
 
-import { getInputChangeAction, getAddItemAction,getDeleteItemAction } from './store/actionCreators'
+import { getInputChangeAction, getAddItemAction,getDeleteItemAction,getTdoList } from './store/actionCreators'
 class TodoListRedux extends Component {
   constructor(props){
     super(props)
@@ -11,36 +11,29 @@ class TodoListRedux extends Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.handleStoreChange = this.handleStoreChange.bind(this)
     this.handleBtnClick = this.handleBtnClick.bind(this)
-    store.subscribe(this.handleStoreChange)
+    this.handleBtnDelete = this.handleBtnDelete.bind(this)
+    store.subscribe(this.handleStoreChange) // react 数据变更时调用  固定写法
   }
   render() {
-    return (
-    <div style={{padding: '10px'}}>
-      <div>
-        <Input 
-        placeholder="Todo info"
-        value={this.state.inputValue} 
-        style={{width: '300px', marginRight: '10px'}}
-        onChange={this.handleInputChange} />
-        <Button onClick={this.handleBtnClick} type="primary">提交</Button>
-        <List
-        style={{marginTop: '10px', width: '600px'}}
-        bordered
-        dataSource={this.state.list}
-        renderItem={(item,index) => (
-        <List.Item>
-         {item} <Button type="danger" onClick={this.handleBtnDelete.bind(this, index)} size="small" style={{float: "right"}}>删除</Button>
-        </List.Item>
-      )}
-    />
-      </div>
-    </div>)
+    return <TodoListReduxUI 
+    inputValue={this.state.inputValue}
+    handleInputChange={this.handleInputChange}
+    handleBtnClick={this.handleBtnClick}
+    list={this.state.list}
+    handleBtnDelete ={this.handleBtnDelete}
+    ></TodoListReduxUI>
+  }
+  componentDidMount(){
+    const action = getTdoList()
+    console.log(action)
+    store.dispatch(action)
   }
   handleInputChange(e){
     const action = getInputChangeAction(e.target.value)
     store.dispatch(action)
   }
   handleStoreChange(){
+    // 重新挂载新的数据
    this.setState(store.getState())
   }
   handleBtnClick(e){
