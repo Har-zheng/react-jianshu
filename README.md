@@ -68,12 +68,18 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 ## React 学习  实现简书  
 ### react 子父 组件间传值 props   子传父 调用传过来的方法 调用给父亲传值
+
 ### react 实现的原理  dom 渲染计算的原理   diff  算法
+
 ### ref 的使用
+
 ### react 中rdux
+
 ### 生命周期函数 是指组件在某一时刻自动执行的函数
+
 ### conterstor 初始化就执行  initialzation (setup props and state) =>  mounting 挂载(1 componentwillMount => 在组件即将被挂载执行 2 render => 3 componentDidMount 组件在被挂载之后执行 )
-### updation  => props (shouldComponentUpadte 在组件更新之前执行 返回布尔值 返回true=> )   state(shouldComponentUpadte (true)=>  componentWillUpdate 组件被更新,他会自动执行, 但是他在 shouldComponentUpad返回true之后才执行 返回fales不执行   componentDidupdate(render完成之后)) 
+
+### updation  => props (shouldComponentUpadte 在组件更新之前执行 返回布尔值 返回true=> )   state(shouldComponentUpadte (true)=>  componentWillUpdate 组件被更新,他会自动执行, 但是他在 shouldComponentUpadate返回true之后才执行 返回fales不执行   componentDidupdate(render完成之后)) 
 
 ### componentWillReaceiveProps 1 当一个组件从父组件接受参数  只要父组件的render函数被执行了 子组件的生命周期函数就会被执行 2(如果这个组件第一次存在于父组件中 不会执行) 3(如果这个组件之前已经存在于父组件中 才会被执行)
 
@@ -89,4 +95,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### 普通组件(this)   无状态组件(优点执行速度更快 箭头函数  传入this) => 一般使用ui组件  或者只用到render函数时  考虑使用
 
-### redux-thunk  中间件进行ajax请求发送
+### redux-thunk   redux 中间件 进行action的封装  接受对象和函数
+
+### redux-saga  redux 中间件 复杂的高于thunk  但是大型项目比较合适
+
+### react-redux 

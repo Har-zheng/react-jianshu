@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css'
 import store from './store/index'
 import TodoListReduxUI from './TodoListReduxUI'
-
-import { getInputChangeAction, getAddItemAction,getDeleteItemAction,getTdoList } from './store/actionCreators'
+import { getInputChangeAction, getAddItemAction,getDeleteItemAction, getIitList } from './store/actionCreators'
 class TodoListRedux extends Component {
   constructor(props){
     super(props)
@@ -24,8 +23,7 @@ class TodoListRedux extends Component {
     ></TodoListReduxUI>
   }
   componentDidMount(){
-    const action = getTdoList()
-    console.log(action)
+    const action = getIitList()
     store.dispatch(action)
   }
   handleInputChange(e){
