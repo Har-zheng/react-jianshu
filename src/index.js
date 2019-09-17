@@ -1,15 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import TodLoist from './TodoList';
-import TodoListReactRedux from './TodoListReactRedux'
-import { Provider } from 'react-redux'
-import store from './store'
-const App = (
-  <Provider store={store}>
-    <TodoListReactRedux />
-  </Provider>
-)
+import App from './App'
+import  './statics/iconfont/iconfont.css'
 
-ReactDOM.render(App, document.getElementById('root'));
+
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 
