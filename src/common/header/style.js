@@ -1,9 +1,12 @@
-import  styled from 'styled-components'
+import styled from 'styled-components'
 import logoPic from '../../statics/logo.png'
 
 export const HeaderWrapper = styled.div`
+  min-width: 768px;
+  max-width: 1440px;
+  margin: 0 auto;
   height: 56px;
-  blord: 1px slod #f0f0f0;
+  border: 1px solid #f0f0f0;
 `
 export const Logo = styled.a.attrs({
   href: '/'
@@ -53,8 +56,26 @@ export const NavSeach = styled.input.attrs({
   outline: none;
   border-radius: 40px;
   background: #eee;
+  color: #777;
   &::placeholder{
     color: #999;
+  }
+  &.focused{
+    width: 240px;
+  }
+  &.slide-enter{
+    width: 160px;
+    transition: all .4s ease-out;
+  }
+  &.slide-enter-active{
+    width: 240px;
+  }
+  &.slide-exit{
+    width: 240;
+    transition: all .4s ease-out;
+  }
+  &.slide-exit-active{
+    width: 160px;
   }
 `
 export const SiderBar = styled.div`
@@ -62,6 +83,7 @@ export const SiderBar = styled.div`
   top: 0;
   right: 0;
   height: 56px;
+
 `
 export const Button = styled.div`
   float: right;
@@ -94,5 +116,9 @@ export const SearchWrapper = styled.div`
     line-height:30px;
     border-radius:50%;
     text-align: center;
+    &.focused{
+      background: #777;
+      color: #fff;
+    }
   }
 `

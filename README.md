@@ -73,7 +73,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### ref 的使用
 
-### react 中rdux
+### react 中redux的使用  类似vuex   
 
 ### 生命周期函数 是指组件在某一时刻自动执行的函数
 
@@ -99,4 +99,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### redux-saga  redux 中间件 复杂的高于thunk  但是大型项目比较合适
 
-### react-redux 
+### react-redux 方便使用redux

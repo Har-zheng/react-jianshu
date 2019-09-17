@@ -1,8 +1,17 @@
-import React,{Component} from 'react'
-import { HeaderWrapper,Logo,Nav,NavItem, NavSeach,SiderBar,Button,SearchWrapper } from './style'
+import React, { Component } from 'react'
+import { CSSTransition } from 'react-transition-group'
+import { HeaderWrapper, Logo, Nav, NavItem, NavSeach, SiderBar, Button, SearchWrapper } from './style'
 
 class Header extends Component {
-  render (){
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false
+    }
+    this.handleInputFocus = this.handleInputFocus.bind(this)
+    this.handleInputBlur = this.handleInputBlur.bind(this)
+  }
+  render() {
     return (
       <HeaderWrapper>
         <Logo></Logo>
@@ -13,16 +22,36 @@ class Header extends Component {
           <NavItem className={'right'}><span className="iconfont">&#xe636;</span></NavItem>
           {/* <span className="iconfont">&#xe615;</span> */}
           <SearchWrapper>
-            <NavSeach></NavSeach> 
-            <span className="iconfont">&#xe60a;</span>
+            <CSSTransition
+              in={this.state.focused}
+              timeout={400}
+              classNames='slide'
+              >
+              <NavSeach
+                className={this.state.focused ? 'focused' : ''}
+                onFocus={this.handleInputFocus}
+                onBlur={this.handleInputBlur}
+              ></NavSeach>
+            </CSSTransition>
+            <span className={this.state.focused ? 'focused iconfont' : 'iconfont'}>&#xe60a;</span>
           </SearchWrapper>
         </Nav>
         <SiderBar>
-        <Button className={'writting'}><span className="iconfont">&#xe615;</span>写文章</Button>
-            <Button className={'reg'}>注册</Button>
+          <Button className={'writting'}><span className="iconfont">&#xe615;</span>写文章</Button>
+          <Button className={'reg'}>注册</Button>
         </SiderBar>
       </HeaderWrapper>
     )
+  }
+  handleInputFocus() {
+    this.setState({
+      focused: true
+    })
+  }
+  handleInputBlur() {
+    this.setState({
+      focused: false
+    })
   }
 }
 export default Header;
