@@ -1,7 +1,9 @@
-const defaultSatte={
+import { combineReducers  } from 'redux'
+// as 别名
+import { reducer as headerReducer } from '../common/header/store'
 
-}
-export default (state = defaultSatte, action) => {
-  
-  return state;
-}
+// 拆分reducer 功能 分成若干小部分  combineReducers
+const reducer =  combineReducers({
+  header: headerReducer
+})
+export default reducer

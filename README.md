@@ -99,4 +99,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### redux-saga  redux 中间件 复杂的高于thunk  但是大型项目比较合适
 
-### react-redux 方便使用redux
+### react-redux 方便使用redux  connect 连接方便action的操作
