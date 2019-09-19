@@ -100,3 +100,41 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ### redux-saga  redux 中间件 复杂的高于thunk  但是大型项目比较合适
 
 ### react-redux 方便使用redux  connect 连接方便action的操作
+
+- npm install immutable  禁止修改state数据
+
+```javascript
+// import * as actionTypes from './actionTypes'
+import { fromJS } from 'immutable'
+// 使用方式 immutable
+const defaultSatte= fromJS({
+  focused: false
+})
+export default (state = defaultSatte, action) => {
+  if(action.type === actionTypes.SEARCH_FOCUS){
+    // immutable 对象的值 回和之前的immutable对象的值 和设置的值 返回一个全新的对象
+    return state.set('focused' ,true)
+  }else if(action.type === actionTypes.SEARCH_BLUR){
+    return state.set('focused', false)
+  }
+  return state;
+}
+
+```
+- redux-immutable   state  函数调用 get方法
+```javascript
+// redux-immutable 的使用
+import { combineReducers  } from 'redux-immutable'
+// as 别名
+import { reducer as headerReducer } from '../common/header/store'
+
+
+// 拆分reducer 功能 分成若干小部分  combineReducers
+const reducer =  combineReducers({
+  header: headerReducer
+})
+export default reducer
+
+// 使用方式
+ focused: state.getIn(['header', 'focused'])
+```
