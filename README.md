@@ -95,7 +95,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### 普通组件(this)   无状态组件(优点执行速度更快 箭头函数  传入this) => 一般使用ui组件  或者只用到render函数时  考虑使用
 
-### redux-thunk   redux 中间件 进行action的封装  接受对象和函数
+### redux-thunk   redux 中间件 进行action的封装  接受对象和函数 支持action中发送ajax请求 必须使用这个中间件
 
 ### redux-saga  redux 中间件 复杂的高于thunk  但是大型项目比较合适
 
