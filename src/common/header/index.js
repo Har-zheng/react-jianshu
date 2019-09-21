@@ -16,19 +16,25 @@ import {
 
 class Header extends Component {
   getListArea() {
-    if (this.props.focused) {
+    const { focused, list, page ,handleMouseEnter,handleMouseLeave, moseIn, handleChangePage,totalPage} = this.props;
+    const newList = list.toJS(); // toJS 方法是immutable js函数封装好的 把不可变对象复制一份并且转为可修改数据
+    const pageList = []
+    if(newList.length){
+      for(let i=(page*10); i< ((page+1)*10); i++){
+        pageList.push(
+          <SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>
+        )
+      }
+    }
+    if (focused || moseIn) {
       return (
-        <SearchInfo>
+        <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>
             热门搜索
-                <SearchInfoSwitch>换一批</SearchInfoSwitch>
+                <SearchInfoSwitch onClick={()=> handleChangePage(page,totalPage )}>换一批</SearchInfoSwitch>
           </SearchInfoTitle>
           <SearchInfoList>
-            {
-              this.props.list.map((item)=> {
-                return <SearchInfoItem key="item">{item}</SearchInfoItem>
-              })
-            }
+            {pageList}
           </SearchInfoList>
         </SearchInfo>
       )
@@ -38,6 +44,7 @@ class Header extends Component {
   }
   
   render() {
+    const { focused ,handleInputFocus,handleInputBlur } = this.props;
     return (
       <HeaderWrapper>
         <Logo></Logo>
@@ -49,17 +56,17 @@ class Header extends Component {
           {/* <span className="iconfont">&#xe615;</span> */}
           <SearchWrapper>
             <CSSTransition
-              in={this.props.focused}
+              in={focused}
               timeout={400}
               classNames='slide'
             >
               <NavSeach
-                className={this.props.focused ? 'focused' : ''}
-                onFocus={this.props.handleInputFocus}
-                onBlur={this.props.handleInputBlur}
+                className={focused ? 'focused' : ''}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
               ></NavSeach>
             </CSSTransition>
-            <span className={this.props.focused ? 'focused iconfont' : 'iconfont'}>&#xe60a;</span>
+            <span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe60a;</span>
             {this.getListArea()}
           </SearchWrapper>
         </Nav>
@@ -82,7 +89,10 @@ class Header extends Component {
 const mapStateToProps = (state) => {
   return {
     focused: state.getIn(['header', 'focused']),
-    list: state.getIn(['header', 'list'])
+    list: state.getIn(['header', 'list']),
+    page: state.getIn(['header', 'page']),
+    totalPage: state.getIn(['header', 'totalPage']),
+    moseIn: state.getIn(['header', 'moseIn'])
   }
 }
 const mapDispathToProps = (dispath) => {
@@ -93,6 +103,19 @@ const mapDispathToProps = (dispath) => {
     },
     handleInputBlur() {
       dispath(actionCreators.searchBlur())
+    },
+    handleMouseEnter() {
+      dispath(actionCreators.searchMoseEnter())
+    },
+    handleMouseLeave() {
+      dispath(actionCreators.searchMouseLeave())
+    },
+    handleChangePage(page,totalPage) {
+      if(page< totalPage-1){
+        dispath(actionCreators.changePage(page+1))
+      }else{
+        dispath(actionCreators.changePage(1))
+      }
     }
   }
 }
