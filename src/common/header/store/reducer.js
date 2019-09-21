@@ -3,17 +3,29 @@ import { fromJS } from 'immutable'
 
 const defaultSatte= fromJS({
   focused: false,
-  list: []
+  moseIn: false,
+  list: [],
+  page: 0,
+  totalPage:1
 })
 export default (state = defaultSatte, action) => {
-  if(action.type === actionTypes.SEARCH_FOCUS){
-    // immutable 对象的值 回和之前的immutable对象的值 和设置的值 返回一个全新的对象
-    return state.set('focused' ,true)
-  }else if(action.type === actionTypes.SEARCH_BLUR){
-    return state.set('focused', false)
-  }else if(action.type === actionTypes.CHANGE_LIST){
-    
-    return state.set('list', action.data)
+  switch(action.type){
+    case actionTypes.SEARCH_FOCUS:
+      return state.set('focused' ,true);
+    case actionTypes.SEARCH_BLUR:
+      return state.set('focused', false);
+    case actionTypes.CHANGE_LIST:
+      return state.merge({ // immutable merge  提供修改多个数据的属性
+        list: action.data,
+        totalPage: action.totalPage
+      })
+    case actionTypes.SEARCH_ENTER_MOSEIN:
+      return state.set('moseIn',true)
+    case actionTypes.SEARCH_LEAVE_MOSEIN:
+      return state.set('moseIn', false);
+    case actionTypes.CHANGE_PAGE:
+      return state.set('page', action.page)
+    default:
+      return state
   }
-  return state;
 }

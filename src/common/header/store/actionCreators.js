@@ -9,7 +9,8 @@ export const searchBlur = () => ({
 })
 const changeList = (data) => ({
   type: actionTypes.CHANGE_LIST,
-  data: fromJS(data)
+  data: fromJS(data),
+  totalPage: Math.ceil(data.length / 10) 
 })
 export const getList =()=> {
   return (dispatch) => {
@@ -23,3 +24,13 @@ export const getList =()=> {
     console.log(123)
   }
 }
+export const searchMoseEnter = () => ({
+  type: actionTypes.SEARCH_ENTER_MOSEIN
+})
+export const searchMouseLeave= ()=> ({
+  type: actionTypes.SEARCH_LEAVE_MOSEIN
+})
+export const changePage =(page)=> ({
+  type: actionTypes.CHANGE_PAGE,
+  page
+})
