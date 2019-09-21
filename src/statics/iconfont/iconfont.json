@@ -20,6 +20,13 @@
       "unicode_decimal": 58901
     },
     {
+      "icon_id": "4236639",
+      "name": "围绕 构件旋转",
+      "font_class": "weiraogoujianxuanzhuan",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "5060877",
       "name": "放大镜",
       "font_class": "fangdajing",

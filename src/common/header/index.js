@@ -13,6 +13,7 @@ import {
   SearchInfoList,
   SearchInfoTitle
 } from './style'
+import { Icon } from '_antd@3.23.2@antd'
 
 class Header extends Component {
   getListArea() {
@@ -31,7 +32,14 @@ class Header extends Component {
         <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>
             热门搜索
+<<<<<<< HEAD
                 <SearchInfoSwitch onClick={()=> handleChangePage(page,totalPage )}>换一批</SearchInfoSwitch>
+=======
+                <SearchInfoSwitch onClick={()=> handleChangePage(page,totalPage, this.spinIcon)}>
+                  <span ref={()=> {this.spinIcon = Icon}} className="iconfont spin">&#xe60e;</span>
+                  换一批
+                  </SearchInfoSwitch>
+>>>>>>> header-search
           </SearchInfoTitle>
           <SearchInfoList>
             {pageList}
@@ -66,7 +74,11 @@ class Header extends Component {
                 onBlur={handleInputBlur}
               ></NavSeach>
             </CSSTransition>
+<<<<<<< HEAD
             <span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe60a;</span>
+=======
+            <span className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe60a;</span>
+>>>>>>> header-search
             {this.getListArea()}
           </SearchWrapper>
         </Nav>
