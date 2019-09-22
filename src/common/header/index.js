@@ -13,7 +13,6 @@ import {
   SearchInfoList,
   SearchInfoTitle
 } from './style'
-import { Icon } from '_antd@3.23.2@antd'
 
 class Header extends Component {
   getListArea() {
@@ -32,14 +31,10 @@ class Header extends Component {
         <SearchInfo onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <SearchInfoTitle>
             热门搜索
-<<<<<<< HEAD
-                <SearchInfoSwitch onClick={()=> handleChangePage(page,totalPage )}>换一批</SearchInfoSwitch>
-=======
                 <SearchInfoSwitch onClick={()=> handleChangePage(page,totalPage, this.spinIcon)}>
-                  <span ref={()=> {this.spinIcon = Icon}} className="iconfont spin">&#xe60e;</span>
+                  <span ref={(Icon)=> {this.spinIcon = Icon}} className="iconfont spin">&#xe60e;</span>
                   换一批
                   </SearchInfoSwitch>
->>>>>>> header-search
           </SearchInfoTitle>
           <SearchInfoList>
             {pageList}
@@ -52,7 +47,7 @@ class Header extends Component {
   }
   
   render() {
-    const { focused ,handleInputFocus,handleInputBlur } = this.props;
+    const { focused ,handleInputFocus,handleInputBlur, list } = this.props;
     return (
       <HeaderWrapper>
         <Logo></Logo>
@@ -70,15 +65,11 @@ class Header extends Component {
             >
               <NavSeach
                 className={focused ? 'focused' : ''}
-                onFocus={handleInputFocus}
+                onFocus={() => handleInputFocus(list)}
                 onBlur={handleInputBlur}
               ></NavSeach>
             </CSSTransition>
-<<<<<<< HEAD
-            <span className={focused ? 'focused iconfont' : 'iconfont'}>&#xe60a;</span>
-=======
             <span className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe60a;</span>
->>>>>>> header-search
             {this.getListArea()}
           </SearchWrapper>
         </Nav>
@@ -109,9 +100,12 @@ const mapStateToProps = (state) => {
 }
 const mapDispathToProps = (dispath) => {
   return {
-    handleInputFocus() {
-      dispath(actionCreators.getList());
+    handleInputFocus(list) {
+      console.log(list)
       dispath(actionCreators.searchFoucs());
+      if(list.size === 0){
+        dispath(actionCreators.getList());
+      }
     },
     handleInputBlur() {
       dispath(actionCreators.searchBlur())
@@ -122,13 +116,22 @@ const mapDispathToProps = (dispath) => {
     handleMouseLeave() {
       dispath(actionCreators.searchMouseLeave())
     },
-    handleChangePage(page,totalPage) {
+    handleChangePage(page,totalPage, spin) {
+      let originAnle =  spin.style.transform.replace(/[^0-9]/ig, '')
+      console.log(originAnle)
+      if(originAnle){
+        originAnle = parseInt(originAnle, 10)
+      }else {
+        originAnle = 0;
+      }
+      spin.style.transform = `rotate(${originAnle+360}deg)`
+      
       if(page< totalPage-1){
         dispath(actionCreators.changePage(page+1))
       }else{
         dispath(actionCreators.changePage(1))
       }
-    }
+     }
   }
 }
 export default connect(mapStateToProps, mapDispathToProps)(Header);
