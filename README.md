@@ -138,3 +138,4 @@ export default reducer
 // 使用方式
  focused: state.getIn(['header', 'focused'])
 ```
+- 学习使用ref <span ref={(Icon)=> {this.spinIcon = Icon}} className="iconfont spin">&#xe60e;</span> 通过一个箭头函数
