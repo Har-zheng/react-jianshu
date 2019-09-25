@@ -72,3 +72,32 @@ export const ListInfo = styled.div`
     color: #999;
   }
 `
+export const RecommendItem = styled.div`
+  padding: 30px 0 0;
+  .img_item{
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+  }
+`
+export const Downloads = styled.div`
+  width: 96%;
+  outline: 1px solid #ccc;
+  padding: 10px 22px;
+  .download_img{
+    width: 60px;
+    height: 60px;
+    opacity: .85;
+  }
+  .info{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 7px;
+    font-size: 15px;
+  }
+  .dow_text{
+  }
+  .dow_desc{
+  }
+`

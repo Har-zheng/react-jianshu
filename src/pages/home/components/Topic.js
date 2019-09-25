@@ -9,19 +9,18 @@ class Topic extends Component {
         {
           list.map((item) => (
             <TopicItem key={item.get('id')}>
-              <img className="img_item" src={item.get('imgUrl')} />
+              <img className="img_item" src={item.get('imgUrl')} alt=""/>
               <span className="span">手绘</span>
             </TopicItem>
           ))
         }
-
       </TopicWrapper>
     )
   }
 }
 const mapState = (state) => ({
   // 拿数据赋值到 this.props 里面的list上
-  list: state.get('home').get('topicList')
+  list: state.getIn(['home', 'topicList'])
 })
 
 // 要想有使用  全局中  store的能力  需要使用react-redux   conten做链接

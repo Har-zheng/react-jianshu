@@ -11,14 +11,13 @@ class Lsit extends Component {
           list.map((item) => {
             return (
               <ListItem>
-                <img className="pic" src={item.get('imgUrl')} />
+                <img className="pic" src={item.get('imgUrl')} alt="" />
                 <ListInfo>
                   <h3 className="title">{item.get('title')}</h3>
                   <p className="desc">{ item.get('desc') }</p>
                 </ListInfo>
               </ListItem>
             )
-  
           })
         }
       </div>
@@ -27,6 +26,6 @@ class Lsit extends Component {
   }
 }
 const mapState = (state) => ({
-  list: state.get('home').get('articleList')
+  list: state.getIn(['home', 'articleList'])
 })
 export default connect(mapState, null)(Lsit);
