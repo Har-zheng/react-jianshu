@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { RecommendItem, Downloads , Code } from '../styled'
+import { RecommendItem, Downloads, Code } from '../styled'
 import { connect } from 'react-redux'
 class Recommend extends Component {
   render() {
@@ -29,5 +29,18 @@ class Recommend extends Component {
 const mapState = (state) => ({
   list: state.getIn(['home', 'LabelList'])
 })
+<<<<<<< HEAD
+=======
+const mapDispathToProps = () => {
+  return {
+    moseEnter(dowl) {
+      dowl.style.display = 'block'
+    },
+    moseLeave(dowl) {
+      dowl.style.display = 'none'
+    }
+  }
+}
+>>>>>>> f63cfc3... feat: home 完善
 
 export default connect(mapState, null)(Recommend);
