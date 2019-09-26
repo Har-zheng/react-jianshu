@@ -8,9 +8,9 @@ class Lsit extends Component {
     return (
       <div>
         {
-          list.map((item) => {
+          list.map((item , idnex) => {
             return (
-              <ListItem>
+              <ListItem key={idnex}>
                 <img className="pic" src={item.get('imgUrl')} alt="" />
                 <ListInfo>
                   <h3 className="title">{item.get('title')}</h3>

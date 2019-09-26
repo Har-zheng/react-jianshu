@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { RecommendItem, Downloads , Code } from '../styled'
 import { connect } from 'react-redux'
+import { dispatch } from 'C:/Users/zhz/AppData/Local/Microsoft/TypeScript/3.6/node_modules/rxjs/internal/observable/range';
 class Recommend extends Component {
   render() {
-    const { list } = this.props
+    const { list, moseEnter, moseLeave } = this.props
     return (
-      <RecommendItem>
+      <RecommendItem >
         {
           list.map((Item, index) => {
             return (
@@ -13,21 +14,33 @@ class Recommend extends Component {
             )
           })
         }
-        <Downloads>
+        <Downloads onMouseEnter={() => moseEnter(this.dowl)} onMouseLeave={() => moseLeave(this.dowl)}>
           <img className="download_img" src="//cdn2.jianshu.io/assets/web/download-index-side-qrcode-cb13fc9106a478795f8d10f9f632fccf.png" alt=""></img>
           <div className="info">
             <p className="dow_text">下载简书App></p>
             <p className="dow_desc">随时随地发现和创作内容</p>
           </div>
         </Downloads>
-        <Code></Code>
+        <Code ref={(dow) => { this.dowl = dow }}></Code>
       </RecommendItem>
     )
   }
+
 }
 
 const mapState = (state) => ({
   list: state.getIn(['home', 'LabelList'])
 })
+const mapDispathToProps = () => {
+  return {
+    moseEnter(dowl){
+      dowl.style.dispaly = 'block'
+      console.log(dowl)
+    },
+    moseLeave(dowl){
+      dowl.style.dispaly = 'none'
+    }
+  }
+}
 
-export default connect(mapState, null)(Recommend);
+export default connect(mapState, mapDispathToProps)(Recommend);
