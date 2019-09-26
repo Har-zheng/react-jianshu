@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { RecommendItem, Downloads , Code } from '../styled'
+import { RecommendItem, Downloads, Code } from '../styled'
 import { connect } from 'react-redux'
-import { dispatch } from 'C:/Users/zhz/AppData/Local/Microsoft/TypeScript/3.6/node_modules/rxjs/internal/observable/range';
 class Recommend extends Component {
   render() {
     const { list, moseEnter, moseLeave } = this.props
@@ -25,7 +24,6 @@ class Recommend extends Component {
       </RecommendItem>
     )
   }
-
 }
 
 const mapState = (state) => ({
@@ -33,12 +31,11 @@ const mapState = (state) => ({
 })
 const mapDispathToProps = () => {
   return {
-    moseEnter(dowl){
-      dowl.style.dispaly = 'block'
-      console.log(dowl)
+    moseEnter(dowl) {
+      dowl.style.display = 'block'
     },
-    moseLeave(dowl){
-      dowl.style.dispaly = 'none'
+    moseLeave(dowl) {
+      dowl.style.display = 'none'
     }
   }
 }
