@@ -4,7 +4,7 @@ import List from './components/List'
 import Recommed from './components/Recommed'
 import Topic from './components/Topic'
 import Writer from './components/Writer'
-
+import axios from 'axios'
 class Home extends Component {
   render() {
     return (
@@ -20,6 +20,18 @@ class Home extends Component {
         </HomeRight>
       </HomeWrapper>
     )
+  }
+  componentDidMount(){
+    axios.get('/api/home.json').then(res => {
+      console.log(res)
+      const result = res.data.data;
+      const action = {
+        type: "change_home_data",
+        topicList: result.topicList,
+        articleList: result.articleList,
+        LabelList:result.LabelList,
+      }
+    })
   }
 }
 export default Home;
