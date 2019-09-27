@@ -29,8 +29,6 @@ class Recommend extends Component {
 const mapState = (state) => ({
   list: state.getIn(['home', 'LabelList'])
 })
-<<<<<<< HEAD
-=======
 const mapDispathToProps = () => {
   return {
     moseEnter(dowl) {
@@ -41,6 +39,5 @@ const mapDispathToProps = () => {
     }
   }
 }
->>>>>>> f63cfc3... feat: home 完善
 
 export default connect(mapState, null)(Recommend);
