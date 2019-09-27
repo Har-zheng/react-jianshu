@@ -16,7 +16,7 @@ export const HomeLeft = styled.div`
   }
 `
 export const HomeRight = styled.div`
-  width: 280px;
+  width: 260px;
   float: right;
 `
 // 
@@ -28,6 +28,7 @@ export const TopicWrapper = styled.div`
 export const TopicItem = styled.div`
   float: left;
   padding: 1px;
+ 
   margin-right: 26px;
   margin-top: 18px;
   background: #f3f3f3;
@@ -72,7 +73,6 @@ export const ListInfo = styled.div`
   }
 `
 export const RecommendItem = styled.div`
-  position: relative;
   padding: 30px 0 0;
   width: 100%;
   .img_item{
@@ -111,17 +111,7 @@ export const Downloads = styled.div`
   }
 `
 export const Code = styled.div`
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 6px;
-  border-radius: 6px;
-  background: url('//cdn2.jianshu.io/assets/web/download-index-side-qrcode-cb13fc9106a478795f8d10f9f632fccf.png');
-  background-size: 100%;
-  top: 80px;
-  left: 48px;
+
 `
 export const Writersider = styled.div`
 
