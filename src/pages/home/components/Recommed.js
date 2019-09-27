@@ -20,7 +20,9 @@ class Recommend extends Component {
             <p className="dow_desc">随时随地发现和创作内容</p>
           </div>
         </Downloads>
-        <Code ref={(dow) => { this.dowl = dow }}></Code>
+        <Code ref={(dow) => { this.dowl = dow }}>
+          
+        </Code>
       </RecommendItem>
     )
   }

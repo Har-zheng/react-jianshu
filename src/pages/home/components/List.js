@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { ListItem, ListInfo } from '../styled';
+import { ListItem, ListInfo,LoadMore } from '../styled';
 
 class Lsit extends Component {
   render() {
@@ -20,8 +20,8 @@ class Lsit extends Component {
             )
           })
         }
+        <LoadMore>加载更多</LoadMore>
       </div>
-
     )
   }
 }
