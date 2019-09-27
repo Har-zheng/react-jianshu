@@ -19,7 +19,7 @@ class Writer extends Component {
             </div>
             <p className="title">三儿王屿</p>
             <p className="desc">写了165.9k字 · 3.5k喜欢</p>
-            <a className="guanhzu" href="#">关注</a>
+            <a className="guanhzu" href="/ab">关注</a>
           </div>
           <div className="item_conten">
             <div className="item">
@@ -27,11 +27,11 @@ class Writer extends Component {
             </div>
             <p className="title">三儿王屿</p>
             <p className="desc">写了165.9k字 · 3.5k喜欢</p>
-            <a className="guanhzu" href="#">关注</a>
+            <a className="guanhzu" href="/c">关注</a>
           </div>
         </WriterConten>
         <WriterButton>
-          <a  className="button" href>查看全部</a>
+          <a  className="button" href="/d">查看全部</a>
         </WriterButton>
       </Writersider>
     )
