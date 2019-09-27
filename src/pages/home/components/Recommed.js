@@ -21,7 +21,6 @@ class Recommend extends Component {
           </div>
         </Downloads>
         <Code ref={(dow) => { this.dowl = dow }}>
-          
         </Code>
       </RecommendItem>
     )

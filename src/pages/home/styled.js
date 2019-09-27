@@ -206,5 +206,5 @@ display: block;
 width: 100%;
 border-radius: 20px;
 background-color: #a5a5a5;
-
+line-height: 40px;
 `

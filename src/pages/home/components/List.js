@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { ListItem, ListInfo,LoadMore } from '../styled';
-
+import  * as actionCreators from '../store'
 class Lsit extends Component {
   render() {
     const { list } = this.props
@@ -24,8 +24,17 @@ class Lsit extends Component {
       </div>
     )
   }
+  componentDidMount() {
+    
+  }
 }
 const mapState = (state) => ({
   list: state.getIn(['home', 'articleList'])
 })
-export default connect(mapState, null)(Lsit);
+const mapDispatch = (dispatch) => ({
+  changeMoreList(){
+    const  action = actionCreators.getMoreList()
+    dispatch(action)
+  }
+})
+export default connect(mapState, mapDispatch)(Lsit);
