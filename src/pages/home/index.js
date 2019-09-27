@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { HomeWrapper, HomeLeft, HomeRight } from './styled'
-import List from './components/List'
-import Recommed from './components/Recommed'
-import Topic from './components/Topic'
-import Writer from './components/Writer'
-import axios from 'axios'
+import { HomeWrapper, HomeLeft, HomeRight } from './styled';
+import { connect } from 'react-redux';
+import List from './components/List';
+import Recommed from './components/Recommed';
+import Topic from './components/Topic';
+import Writer from './components/Writer';
+import axios from 'axios';
 class Home extends Component {
   render() {
     return (
@@ -31,7 +32,13 @@ class Home extends Component {
         articleList: result.articleList,
         LabelList:result.LabelList,
       }
+      this.props.changeHomeData(action)
     })
   }
 }
-export default Home;
+const mapDispatch = (dispatch) => ({
+  changeHomeData(action){
+    dispatch(action);
+  }
+})
+export default connect(null, mapDispatch)(Home);
