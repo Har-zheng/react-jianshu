@@ -1,0 +1,1 @@
+export const ACTION_DETAIL = 'detail/ACTION_DETAIL'
