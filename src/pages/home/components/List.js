@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import { ListItem, ListInfo,LoadMore } from '../styled';
-import  * as actionCreators from '../store'
-class Lsit extends Component {
+import  {actionCreators} from '../store'
+import { Link } from 'react-router-dom'
+class Lsit extends PureComponent {
   render() {
-    const { list } = this.props
+    const { list , changeMoreList,page } = this.props
     return (
       <div>
         {
           list.map((item, index) => {
             return (
+              <Link key={index} to='/detail'>
               <ListItem key={index}>
                 <img className="pic" src={item.get('imgUrl')} alt="" />
                 <ListInfo>
@@ -17,23 +19,22 @@ class Lsit extends Component {
                   <p className="desc">{ item.get('desc') }</p>
                 </ListInfo>
               </ListItem>
+              </Link>
             )
           })
         }
-        <LoadMore>加载更多</LoadMore>
+        <LoadMore onClick={() => changeMoreList(page)}>加载更多</LoadMore>
       </div>
     )
   }
-  componentDidMount() {
-    
-  }
 }
 const mapState = (state) => ({
-  list: state.getIn(['home', 'articleList'])
+  list: state.getIn(['home', 'articleList']),
+  page: state.getIn(['home', 'articlePage'])
 })
 const mapDispatch = (dispatch) => ({
-  changeMoreList(){
-    const  action = actionCreators.getMoreList()
+  changeMoreList(page){
+    const  action = actionCreators.getMoreList(page)
     dispatch(action)
   }
 })

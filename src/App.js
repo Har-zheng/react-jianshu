@@ -14,9 +14,10 @@ class App extends Component {
       <Provider store={store}>
         <div>
           <GlobalStyle />
-          <Header></Header>
+          
           <BrowserRouter>
             <div>
+              <Header></Header>
               <Route path='/' exact component={Home}></Route>
               <Route path='/detail' exact component={Detail}></Route>
             </div>

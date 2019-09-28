@@ -112,6 +112,7 @@ export const Downloads = styled.div`
   }
 `
 export const Code = styled.div`
+display: none;
 position: absolute;
 width: 160px;
 height: 160px;
@@ -207,4 +208,15 @@ width: 100%;
 border-radius: 20px;
 background-color: #a5a5a5;
 line-height: 40px;
+`
+export const BackTop = styled.div`
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1040;
+  color: #ccc;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  line-height: 22px;
+  font-size: 14px;
 `
