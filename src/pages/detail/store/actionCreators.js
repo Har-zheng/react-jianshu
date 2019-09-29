@@ -6,10 +6,10 @@ const actionDetail =(detail) => ({
   title: detail.title,
   content: detail.cntent
 })
-export const getDetail = () => {
+export const getDetail = (id) => {
   return (dispatch) => {
     console.log('detail')
-    axios.get('/api/detail.json').then(res => {
+    axios.get(`/api/detail.json?id=${id}`).then(res => {
       const detail = res.data.data
       dispatch(actionDetail(detail))
     })

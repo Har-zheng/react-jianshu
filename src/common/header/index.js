@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { actionCreators as loginactionCreators } from '../../pages/login/store'
 import { Link } from 'react-router-dom'
 import {
   HeaderWrapper, Logo, Nav, NavItem, NavSeach,
@@ -48,7 +49,7 @@ class Header extends Component {
   }
   
   render() {
-    const { focused ,handleInputFocus,handleInputBlur, list } = this.props;
+    const { focused ,handleInputFocus,handleInputBlur, list,login ,LogoOut} = this.props;
     return (
       <HeaderWrapper>
         <Link to='/'>
@@ -57,7 +58,9 @@ class Header extends Component {
         <Nav>
           <NavItem className={'left active'}>首页</NavItem>
           <NavItem className={'left'}>下载App</NavItem>
-          <NavItem className={'right'}>登录</NavItem>
+          {
+            login? <NavItem onClick={LogoOut} to='/login' className={'right'}>退出</NavItem>:<Link to='/login'><NavItem className={'right'}>登录</NavItem></Link>
+          }
           <NavItem className={'right'}><span className="iconfont">&#xe636;</span></NavItem>
           {/* <span className="iconfont">&#xe615;</span> */}
           <SearchWrapper>
@@ -77,8 +80,11 @@ class Header extends Component {
           </SearchWrapper>
         </Nav>
         <SiderBar>
+          <Link to='/write'>
           <Button className={'writting'}><span className="iconfont">&#xe615;</span>写文章</Button>
+          </Link>
           <Button className={'reg'}>注册</Button>
+          
         </SiderBar>
       </HeaderWrapper>
     )
@@ -98,7 +104,8 @@ const mapStateToProps = (state) => {
     list: state.getIn(['header', 'list']),
     page: state.getIn(['header', 'page']),
     totalPage: state.getIn(['header', 'totalPage']),
-    moseIn: state.getIn(['header', 'moseIn'])
+    moseIn: state.getIn(['header', 'moseIn']),
+    login: state.getIn(['login', 'login'])
   }
 }
 const mapDispathToProps = (dispath) => {
@@ -134,6 +141,9 @@ const mapDispathToProps = (dispath) => {
       }else{
         dispath(actionCreators.changePage(1))
       }
+     },
+     LogoOut() {
+      dispath(loginactionCreators.logoout())
      }
   }
 }

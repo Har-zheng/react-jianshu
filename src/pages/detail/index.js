@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { DetailWrapper,Header,Content } from './style'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { withRouter } from 'react-router-dom'
 
-class Deatil extends Component {
+class Deatil extends PureComponent {
   render(){
     let { title, content } = this.props
+    console.log(this.props)
     return (
         <DetailWrapper>
         <Header>{title}</Header>
@@ -16,7 +18,7 @@ class Deatil extends Component {
     )
   }
   componentDidMount() {
-    this.props.getDetailData()
+    this.props.getDetailData(this.props.match.params.id)
   }
 }
 const mapState = (state) => ({
@@ -24,9 +26,10 @@ const mapState = (state) => ({
   content: state.getIn(['detail', 'content'])
 })
 const mapDispatch = (dispatch) => ({
-  getDetailData() {
-    const action = actionCreators.getDetail()
+  getDetailData(id) {
+    const action = actionCreators.getDetail(id)
     dispatch(action)
   }
 })
-export default connect(mapState, mapDispatch)(Deatil);
+// withRouter 让detail 有能力获取route的所有数据
+export default connect(mapState, mapDispatch)(withRouter(Deatil));

@@ -139,3 +139,8 @@ export default reducer
  focused: state.getIn(['header', 'focused'])
 ```
 - 学习使用ref <span ref={(Icon)=> {this.spinIcon = Icon}} className="iconfont spin">&#xe60e;</span> 通过一个箭头函数
+- 
+- 动态路由获取参数   match  params模式传参 /:id  获取 this.props.metah
+- location 解析出来参数  
+- PureComponent  与 Component   提升性能  有关render时性能的使用
+- yarn add react-loadable 使用这个 拆分加载项  避免一次加载过多
